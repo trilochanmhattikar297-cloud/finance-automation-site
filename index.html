@@ -72,8 +72,17 @@
     .tag.ok { background: rgba(52, 211, 153, .14); color: var(--emerald); }
     .tag.warn { background: rgba(245, 184, 75, .14); color: var(--amber); }
     .tag.bad { background: rgba(242, 139, 130, .14); color: var(--red); }
-    .tag.flow { font-size: .95rem; }
-    .footnote { margin-top: 22px; color: var(--muted); font-size: .92rem; max-width: 80ch; padding-left: 14px; border-left: 3px solid var(--amber); }
+    .proof-strip { border-block: 1px solid var(--line); background: var(--surface); padding: 40px 0; }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    @media (max-width: 760px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-num { font-family: var(--display); font-size: 2.2rem; font-weight: 700; color: var(--emerald); line-height: 1; }
+    .stat-label { color: var(--muted); font-size: .92rem; margin-top: 6px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; gap: 14px; }
+    .card h3 { font-size: 1.35rem; }
+    .card p { color: var(--muted); font-size: .98rem; }
+    .contact-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 48px; text-align: center; max-width: 720px; margin: 0 auto; }
+    footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: .9rem; text-align: center; }
   </style>
 </head>
 <body>
@@ -86,7 +95,6 @@
       <nav>
         <a href="#automations">Automations</a>
         <a href="#results">Results</a>
-        <a href="#about">About</a>
         <a href="#contact" class="btn btn-primary">Book Consultation</a>
       </nav>
     </div>
@@ -143,6 +151,70 @@
         </div>
       </div>
     </section>
+
+    <div class="proof-strip">
+      <div class="wrap proof-grid">
+        <div>
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Production Workflows</div>
+        </div>
+        <div>
+          <div class="stat-num">99.4%</div>
+          <div class="stat-label">Recon Accuracy</div>
+        </div>
+        <div>
+          <div class="stat-num">15 hrs</div>
+          <div class="stat-label">Saved per Week</div>
+        </div>
+        <div>
+          <div class="stat-num">Zero</div>
+          <div class="stat-label">Manual Data Entry</div>
+        </div>
+      </div>
+    </div>
+
+    <section id="automations">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Core Finance Automations</h2>
+          <p class="lead">Modular systems designed to plug into your existing spreadsheets, accounting software, and bank feeds.</p>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>GST & Tax Reconciliation</h3>
+            <p>Automatically match 2B reports with internal purchase registers. Flags discrepancies and invoice number variations seamlessly.</p>
+          </div>
+          <div class="card">
+            <h3>Accounts Payable Pipeline</h3>
+            <p>Extract line-item invoice data, route approvals via email/Slack, and batch-prepare vendor payments without human intervention.</p>
+          </div>
+          <div class="card">
+            <h3>Receivables & Aging Tracking</h3>
+            <p>Automated payment reminders, overdue escalation workflows, and real-time debtor aging categorization.</p>
+          </div>
+          <div class="card">
+            <h3>Rolling Cash-Flow Forecast</h3>
+            <p>Dynamic projection engines connecting real-time bank feeds with projected receipts and fixed obligations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-box">
+          <h2>Ready to Automate Your Finance Operations?</h2>
+          <p class="lead" style="margin: 16px auto 28px;">Let's review your current reporting bottlenecks and implement automated workflows tailored to your stack.</p>
+          <a href="mailto:contact@trisolutions.com" class="btn btn-primary">Schedule a Call</a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2026 TRISLOUTIONS. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
