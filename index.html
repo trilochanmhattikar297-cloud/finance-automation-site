@@ -1,34 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TRISLOUTIONS | Finance Automation</title>
-  <link rel="icon" type="image/jpeg" href="logo.png.jpg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRISLOUTIONS | Finance Workflow Automation: GST, Payables, Receivables, Forecasting</title>
+  <meta name="description" content="TRISLOUTIONS builds fully automated finance and accounting workflows: GST reconciliation, accounts payable, receivables, cash-flow forecasting and MIS reporting. Eight automations tested on real, messy data.">
+  <link rel="icon" href="logo.png.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: #0b132b; color: #ffffff; line-height: 1.6; }
-    header { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; background: #1c2541; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .brand { display: flex; align-items: center; text-decoration: none; color: #fff; gap: 12px; }
-    .brand img { height: 42px; width: auto; object-fit: contain; }
-    .brand-title { font-size: 1.25rem; font-weight: 700; color: #d4af37; letter-spacing: 0.5px; }
-    .container { max-width: 960px; margin: 4rem auto; padding: 0 1.5rem; text-align: center; }
-    h1 { font-size: 2.75rem; margin-bottom: 1rem; color: #ffffff; }
-    p { font-size: 1.2rem; color: #cbd5e1; max-width: 650px; margin: 0 auto 2rem; }
-    .cta-btn { display: inline-block; padding: 0.85rem 1.8rem; background: #d4af37; color: #0b132b; font-weight: bold; text-decoration: none; border-radius: 6px; }
+    :root {
+      --bg: #0A1A2F;
+      --surface: #0F2540;
+      --surface-2: #133055;
+      --line: #22406A;
+      --text: #E9EFF6;
+      --muted: #A3B5CA;
+      --emerald: #34D399;
+      --amber: #F5B84B;
+      --red: #F28B82;
+      --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    img, svg { max-width: 100%; }
+    a { color: var(--emerald); }
+    :focus-visible { outline: 3px solid var(--emerald); outline-offset: 3px; border-radius: 4px; }
+    .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+    section { padding: 96px 0; }
+    h1, h2, h3 { font-family: var(--display); line-height: 1.12; margin: 0; letter-spacing: -.015em; }
+    h1 { font-size: clamp(2.4rem, 5.4vw, 4.1rem); font-weight: 700; }
+    h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 700; max-width: 22ch; }
+    h3 { font-size: 1.2rem; font-weight: 500; }
+    p { margin: 0; }
+    .lead { color: var(--muted); font-size: 1.12rem; max-width: 62ch; }
+    .section-head { margin-bottom: 44px; display: grid; gap: 14px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 24px; border-radius: 8px; font: 600 1rem var(--body); text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+    .btn-primary { background: var(--emerald); color: #04241A; }
+    .btn-primary:hover { background: #6EE7B7; }
+    .btn-ghost { border-color: var(--line); color: var(--text); background: transparent; }
+    .btn-ghost:hover { border-color: var(--emerald); color: var(--emerald); }
+    header.nav { position: sticky; top: 0; z-index: 20; background: rgba(10, 26, 47, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 1.15rem; color: var(--text); text-decoration: none; letter-spacing: .02em; }
+    .brand img { height: 40px; width: auto; border-radius: 6px; display: block; object-fit: contain; }
+    .nav nav { display: flex; gap: 26px; }
+    .nav nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+    .nav nav a:hover { color: var(--text); }
+    .nav .btn { padding: 9px 16px; font-size: .92rem; }
+    @media (max-width: 820px) { .nav nav { display: none; } }
+    .hero { padding: 84px 0 96px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    .hero h1 { margin-bottom: 22px; }
+    .hero .lead { margin-bottom: 32px; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 44px; } }
+    .ledger { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .ledger-bar { display: flex; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
+    .ledger-bar strong { color: var(--text); font-weight: 600; }
+    .ledger-scroll { overflow-x: auto; }
+    .ledger table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+    .ledger th { text-align: left; font-weight: 500; color: var(--muted); padding: 10px 18px; border-bottom: 1px solid var(--line); font-size: .84rem; }
+    .ledger td { padding: 13px 18px; border-bottom: 1px solid rgba(34, 64, 106, .55); }
+    .ledger tr:last-child td { border-bottom: 0; }
+    .ledger td.num, .ledger th.num { text-align: right; }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+    .tag.ok { background: rgba(52, 211, 153, .14); color: var(--emerald); }
+    .tag.warn { background: rgba(245, 184, 75, .14); color: var(--amber); }
+    .tag.bad { background: rgba(242, 139, 130, .14); color: var(--red); }
+    .tag.flow { font-size: .95rem; }
+    .footnote { margin-top: 22px; color: var(--muted); font-size: .92rem; max-width: 80ch; padding-left: 14px; border-left: 3px solid var(--amber); }
   </style>
 </head>
 <body>
-  <header>
-    <a href="#" class="brand">
-      <img src="logo.png.jpg" alt="TRISLOUTIONS Logo">
-      <span class="brand-title">TRISLOUTIONS</span>
-    </a>
+  <header class="nav">
+    <div class="wrap">
+      <a href="#" class="brand">
+        <img src="logo.png.jpg" alt="TRISLOUTIONS">
+        <span>TRISLOUTIONS</span>
+      </a>
+      <nav>
+        <a href="#automations">Automations</a>
+        <a href="#results">Results</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn btn-primary">Book Consultation</a>
+      </nav>
+    </div>
   </header>
-  <main class="container">
-    <h1>Finance Automation Solutions</h1>
-    <p>Streamline workflows, automate reports, and scale operational efficiency.</p>
-    <a href="#contact" class="cta-btn">Get Started</a>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Finance Workflow Automation</h1>
+          <p class="lead">Fully automated finance and accounting workflows: GST reconciliation, accounts payable, receivables, cash-flow forecasting, and MIS reporting tested on real, messy data.</p>
+          <div class="cta-row" style="margin-top: 24px;">
+            <a href="#contact" class="btn btn-primary">Get Started</a>
+            <a href="#automations" class="btn btn-ghost">Explore Workflows</a>
+          </div>
+        </div>
+        <div class="ledger">
+          <div class="ledger-bar">
+            <span>Automated Recon Ledger</span>
+            <strong>Active</strong>
+          </div>
+          <div class="ledger-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Invoice ID</th>
+                  <th>Vendor</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>INV-8492</td>
+                  <td>Apex Cloud</td>
+                  <td>$1,420.00</td>
+                  <td><span class="tag ok">Matched</span></td>
+                </tr>
+                <tr>
+                  <td>INV-8493</td>
+                  <td>Logistics Corp</td>
+                  <td>$890.50</td>
+                  <td><span class="tag ok">Matched</span></td>
+                </tr>
+                <tr>
+                  <td>INV-8494</td>
+                  <td>Data Systems</td>
+                  <td>$3,100.00</td>
+                  <td><span class="tag warn">Pending GST</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </body>
-</html> 
+</html>
