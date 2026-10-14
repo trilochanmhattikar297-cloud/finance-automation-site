@@ -1,225 +1,234 @@
-// =====================================================================
+<html>
+<body>
+<script>
+// =============================================================
 // SIDDU CHAT WIDGET: paste-in replacement
 // In index.html, delete everything from the comment line that says
 // "FAQ chatbot" (just above "const KB = [") down to, but NOT including,
 // the closing script tag, and paste this whole file in its place.
 // Everything above that point (OWNER, EMAIL, sendForm, ledger, contact
 // form) stays exactly as it is.
-// =====================================================================
+// =============================================================
 
-/* ---------- Siddu: knowledge base (from the Siddu 24/7 Support Agent PDF) ---------- */
+/* --------- Siddu: knowledge base (from the Siddu 24/7 Support Agent PDF) --------- */
 const BOT = "Siddu";
 const PHONE_TXT = "+91 78927 75885";
-const BENCH = " Note: the 15-minute run was directly measured. The \"before\" figures (40 hrs, 10 hrs, 2 days) are industry benchmarks, not personally re-timed manual work.";
-const GET_STARTED = "Book a free discovery call using the contact form on this page, or message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + ". " + OWNER + " will reply with next steps.";
+const BENCH = " Note: the 15-minute run was directly measured. The \"before\" figures (40 hrs, 10 hrs, 2 days) are industry benchmarks, not personally re-run by me.";
+const GET_STARTED = "Book a free discovery call using the contact form on this page, or message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + ". " + OWNER + " will schedule it.";
 
 const KB = [
   /* ---- specific topics first, general ones later (ties go to the earlier entry) ---- */
-  { chip: "Talk to the founder", keys: ["talk to","speak to","speak with","human","person","founder","trilochan","call me","contact me","callback","call back","reach"],
+  { chip: "Talk to the founder", keys: ["talk to","speak to","speak with","human","person","founder","trilochan","call me","contact me","callback","call back"],
     lead: true,
     a: OWNER + " built, debugged and verified all eight automations. I can pass your details to him." },
 
   { keys: ["price","pricing","cost","quote","fee","charge","how much","discount","budget","package","plan"],
-    a: "I don't have pricing information. " + OWNER + " discusses that on a free discovery call. Book one using the contact form on this page, or message us on WhatsApp at " + PHONE_TXT + "." },
+    a: "I don't have pricing information. " + OWNER + " discusses that on a free discovery call. Book one using the contact form on this page, or message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + "." },
 
   { keys: ["how long will","setup time","set up time","timeline","implementation","onboard","go live","delivery time","how soon","turnaround"],
-    a: "I don't have a set timeline for new projects. " + OWNER + " can estimate it after hearing what you want to automate. Book a free discovery call using the contact form on this page." },
+    a: "I don't have a set timeline for new projects. " + OWNER + " can estimate after hearing what you want to automate. Book a free discovery call using the contact form on this page, or message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + "." },
 
   { keys: ["software","tally","zoho","sap","quickbooks","erp","integrat","google sheets","sheets","excel","connect with","work with","tools"],
-    a: "The builds described to me use Google Sheets as a data source. For any other system or software, please ask " + OWNER + " on a free discovery call." },
+    a: "The builds described to me use Google Sheets as a data source. For any other system or software, please ask " + OWNER + " on a free discovery call using the contact form on this page, or message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + "." },
 
-  { keys: ["file my gst","file gst","filing return","file return","e-filing","efile","file my return","submit return","file taxes"],
-    a: "Return filing isn't listed as a feature. The GSTR-2B agent compares your purchase ledger against GSTR-2B filing data to find mismatches. For filing itself, please speak to " + OWNER + " or a tax professional." },
+  { keys: ["file my gst","file gst","filing return","file return","e-filing","efile","file my return","submit return","file tax"],
+    a: "I am an information assistant for TRISLOUTIONS, not a tax practitioner, so I cannot log into GST or filing portals for you. I can tell you about the automations " + OWNER + " builds (like automated filing status tracking across multiple GSTINs). For actual filing services, contact " + OWNER + " via the contact form on this page." },
 
-  { keys: ["tax advice","legal advice","legal","lawyer","should i claim","itc eligib","penalty advice"],
-    a: "I can explain what the automations do, but I can't give tax, GST or legal advice. For a filing decision, please consult your accountant or a tax professional." },
+  { keys: ["whatsapp","message","chat on whatsapp"],
+    a: "You can message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + ". Or book a free discovery call using the contact form on this page." },
 
-  { keys: ["payroll","inventory","hr ","crm","sales forecast","e-commerce","ecommerce","stock","tds return","audit"],
-    a: "That isn't one of the eight documented automations (GSTR-2B reconciliation, AP invoice pipeline, MIS generation, compliance calendar, bank reconciliation, receivables follow-up, payable approval and cash-flow forecast). " + OWNER + " can discuss custom needs on a free discovery call." },
+  { keys: ["email","mail","write to"],
+    a: "You can email " + OWNER + " directly at " + EMAIL + ", or submit the contact form on this page." },
 
-  { keys: ["password","login","credential","otp","pin ","bank detail","account number"],
-    a: "Please don't share passwords, bank logins or portal credentials in this chat. I only need contact details. For anything confidential, speak to " + OWNER + " directly." },
+  { keys: ["8","eight","all","list","what automations","what do you do","services","offerings","capabilities"],
+    a: OWNER + " has built eight verified automations:\n\n1. Multi-GSTIN Return Tracker (40 hrs -> 15 mins)\n2. Invoice & Bank Statement Auto-Reconciliation (10 hrs/wk -> minutes)\n3. Tally ERP / Prime Automated Data Sync\n4. Smart Vendor Payment & Approval Workflow\n5. Multi-Entity Financial Dashboard\n6. Automated Client Payment Reminders\n7. E-Way Bill & E-Invoice Generation\n8. Audit-Trail & Exception Flagging System\n\nWhich one would you like to know more about?" },
 
-  { keys: ["gstr","2b","gst reconcil","reconcile gst","purchase ledger","mismatch","duplicate","timing difference","missing from books","\u20b940","40 rupee"],
-    a: "The GSTR-2B Reconciliation Agent compares your purchase ledger against GSTR-2B filing data. It was tested on four planted error types and found all four: a duplicate entry, a timing difference, an amount mismatch (including a \u20b940 difference on one invoice) and an invoice missing from the books. Manual comparison is benchmarked at about 40 hours per entity." },
+  { keys: ["1","tracker","multi-gstin","gstin","filing status"],
+    a: "1. Multi-GSTIN Return Tracker\nTracks filing status across multiple GSTINs, pulling data directly into a unified dashboard, cutting tracking time from 40 hours to 15 minutes." + BENCH },
 
-  { keys: ["invoice extract","extract","pdf invoice","image invoice","ocr","vendor invoice","accounts payable","ap pipeline","ap invoice","data entry","gstin"],
-    a: "The Accounts Payable Invoice Pipeline reads vendor invoices from PDF or image files and validates mandatory fields. Invoices missing a GSTIN, invoice number or total are blocked from posting and trigger a warning email. GSTINs must be the full 15 characters. Manual entry is benchmarked at about 10 hours a week." },
+  { keys: ["2","reconciliation","reconcile","bank statement","invoice"],
+    a: "2. Invoice & Bank Statement Auto-Reconciliation\nMatches invoices against bank statements automatically, reducing weekly reconciliation work from 10 hours down to minutes." + BENCH },
 
-  { keys: ["file type","file format","docx","word file","which file","what file","upload","pdf only","format of invoice"],
-    a: "Invoice extraction reads PDF and image invoices. A .docx file won't work because AI vision reads only image or PDF formats, so it needs to be converted to PDF first." },
+  { keys: ["3","tally","prime","erp","sync"],
+    a: "3. Tally ERP / Prime Automated Data Sync\nSyncs vouchers and ledger data between Tally and report sheets automatically, avoiding manual double entry." },
 
-  { keys: ["wrong invoice","sales invoice","wrong document","wrong type","purchase invoice"],
-    a: "During testing, a sales invoice was fed in where a purchase invoice was expected. The extraction was accurate but the document type was wrong, so a validation rule now catches this." },
+  { keys: ["4","vendor","approval","workflow","payment approval"],
+    a: "4. Smart Vendor Payment & Approval Workflow\nRoutes vendor bills for approval based on thresholds and flags discrepancies before payment." },
 
-  { keys: ["mis","management report","commentary","p&l","profit and loss","board","monthly report","margin"],
-    a: "The Automated MIS Generation agent pulls the monthly P&L on a schedule and drafts board-ready commentary that identifies margin compression, names likely causes and flags forward-looking risk. The commentary goes to a human review draft before it reaches any stakeholder. Manual writing is benchmarked at about 2 days." },
+  { keys: ["5","multi-entity","dashboard","group","consolidat"],
+    a: "5. Multi-Entity Financial Dashboard\nConsolidates balances and P&L across multiple group entities into a single live view." },
 
-  { keys: ["compliance calendar","deadline","due date","reminder for filing","roc","tds","alert","late fee","missed filing","calendar"],
-    a: "The Compliance Calendar Agent checks a filing calendar daily and sends an alert when a GST, TDS or ROC deadline is within 7 days. It stays silent otherwise, and it was tested in both directions. It handles the DD-Mon-YYYY date format used in Indian filings." },
+  { keys: ["6","reminder","client payment","chase","overdue"],
+    a: "6. Automated Client Payment Reminders\nSends scheduled WhatsApp/email reminders for outstanding invoices before and after due dates." },
 
-  { keys: ["bank rec","bank statement","bank match","paid unpaid","check manually","short payment","same amount","identical amount","bank"],
-    a: "The Bank Reconciliation Agent matches ledger invoices to bank payments by amount and date. Each invoice is marked Paid, Unpaid or Check Manually. It caught a \u20b9100 short payment and a genuinely unpaid invoice. If two invoices share the same amount, it flags them as Check Manually instead of guessing which payment belongs to which." },
+  { keys: ["7","e-way","e-invoice","eway","einvoice","irn"],
+    a: "7. E-Way Bill & E-Invoice Generation\nGenerates IRNs and E-Way bills directly from sales data without repetitive portal entry." },
 
-  { keys: ["receivable","follow up","follow-up","overdue","collections","reminder","dunning","aging","ageing","escalat","unpaid"],
-    a: "The Receivables Follow-Up Agent ages unpaid invoices daily and sends reminders in three escalating tones, verified on test invoices at 5, 42 and 82 days overdue. Known limitation: it currently re-sends a reminder every day it runs because it doesn't yet track what was already sent. Tracking is planned as the next iteration." },
+  { keys: ["8","audit","exception","flag","discrepancy"],
+    a: "8. Audit-Trail & Exception Flagging System\nMonitors transaction logs for duplicates, tax-rate mismatches, or missing fields, flagging them for human review." },
 
-  { keys: ["payable approval","3-way","three way","3 way","purchase order","goods receipt","po ","grn","approval","quantity mismatch"],
-    a: "The Payable Approval Agent runs a 3-way match across the Purchase Order, Goods Receipt and Invoice. Matching payables are approved. In testing, an invoice for 50 units with only 45 received was held with a specific reason stated, so you don't pay for goods that were never delivered. A human reviews any mismatch." },
+  { keys: ["benchmarks","40 hrs","10 hrs","measured","2 days","accuracy","industry","disclaimer"],
+    a: BENCH },
 
-  { keys: ["cash flow","cash-flow","cashflow","forecast","90 day","90-day","shortfall","liquidity","cash position","runway"],
-    a: "The Cash-Flow Forecast Agent builds a weekly 90-day rolling forecast from receivables (adjusted for real collection lag), approved payables and fixed monthly costs. In testing it flagged a projected shortfall of -\u20b98,50,500 in week 9. It refuses to run if reconciliation or payables approval still has unresolved issues, because a forecast on unverified numbers misleads." },
+  { keys: ["who built","who created","who made","trilochan","founder","about","who are you","who is"],
+    a: "TRISLOUTIONS is founded by " + OWNER + " (" + EMAIL + "). He personally built, debugged and verified all eight automations featured on this page." },
 
-  { keys: ["refuse","won't run","will not run","gate","gates","checkpoint","human review","human in the loop","human check"],
-    a: "There are three deliberate human checkpoints. (1) Payable approval: a person confirms mismatches. (2) AP invoice extraction: invoices missing mandatory fields go to a person instead of being posted incomplete. (3) Cash-flow forecast: it won't run while reconciliation is unresolved. MIS commentary also goes to a human review draft before distribution. These are design choices, not limitations." },
-
-  { keys: ["work together","pipeline","sequence","month close","month-close","end to end","end-to-end","connected","flow","order"],
-    a: "The month-close sequence runs in this order: reconcile GSTR-2B, match payables, chase receivables, forecast cash, then generate management commentary. It finished in about 15 minutes on a live test." },
-
-  { chip: "How fast is it?", keys: ["fast","speed","how long","minutes","quick","15 min","time taken","slow","performance"],
-    a: "The full month-close sequence (reconciliation, payables approval, receivables follow-up and commentary) ran in about 15 minutes on a live test. That time was directly measured." },
-
-  { chip: "How much time does it save?", keys: ["save","saving","time saved","hours","benchmark","percent","%","98","97","99","faster","improve","result","roi","efficien"],
-    a: "Against industry benchmarks: GST reconciliation drops from about 40 hours per entity to minutes (~98% faster), accounts payable from about 10 hours a week to minutes (~97%), and MIS preparation from about 2 days to minutes (~99%)." + BENCH },
-
-  { keys: ["measured","verified","proof","real data","demo","tested","testing","genuine","real or","fake"],
-    a: "Every build was tested on real, deliberately imperfect data (genuine mismatches, duplicates and incomplete invoices), not clean demo data, and debugged through documented failures before being verified. The 15-minute full run was directly measured on a live test." + BENCH },
-
-  { keys: ["hallucinat","make things up","made up","invent","fabricat","ai wrong","ai accuracy","ai reliable","ai mistake"],
-    a: "A filter bug once pulled the wrong month and the AI filled the gap with a plausible but invented story. Since then, every output is checked against known figures, and MIS commentary goes to a human review draft before distribution." },
-
-  { keys: ["payment on its own","pay automatically","auto pay","autopay","release payment","money move","transfer money"],
-    a: "The Payable Approval Agent approves fully matching payables and holds mismatches for human review with a stated reason. A person confirms wherever there is a mismatch." },
-
-  { keys: ["incomplete","missing field","bad data","wrong data","dirty data","messy","error handling","what if"],
-    a: "Invoices missing a GSTIN, invoice number or total are blocked from posting and trigger a warning email. The forecast won't run if reconciliation or payables approval has unresolved issues. The bank agent flags ambiguous matches as Check Manually." },
-
-  { keys: ["limitation","limit","weakness","can't do","cannot do","drawback","downside","bug","broke","fixed","problem","issue","mistake"],
-    a: "Known limitation: the receivables agent re-sends a reminder every day it runs because it doesn't yet track what was already sent. That is the next iteration. Real bugs found during the build (for example column-name collisions, race conditions and date-parsing failures) were documented openly and fixed, and each build was re-verified afterwards." },
-
-  { chip: "Indian compliance?", keys: ["india","indian","compliance","lakh","\u20b9","rupee","gst","tds","roc","gstr"],
-    a: "Yes. It handles GSTR-2B, GSTIN validation (a strict 15-character rule), TDS and ROC deadlines, DD-Mon-YYYY dates and \u20b9 amounts with lakh-style grouping." },
-
-  { chip: "Is it safe for financial data?", keys: ["safe","secure","security","risk","trust","accurate","error","control","reliable","privacy","confidential","protect"],
-    a: "Every automation has built-in validation rules (GSTIN checks, 3-way matching and a forecast that refuses to run on unresolved data) and was tested against known figures before being trusted. Human checkpoints cover payable approval, incomplete invoices and the forecast gate." },
-
-  { keys: ["eight","8 automation","list of automation","all automation","each automation","features","modules","agents"],
-    a: "The eight automations are: 1) GSTR-2B Reconciliation, 2) Accounts Payable Invoice Pipeline, 3) Automated MIS Generation, 4) Compliance Calendar, 5) Bank Reconciliation, 6) Receivables Follow-Up, 7) Payable Approval (3-way match) and 8) Cash-Flow Forecast. Ask me about any of them." },
-
-  { chip: "What can you automate?", keys: ["automate","what can","services","offer","do you do","build","capabilit","solution","trisloutions","who are you","company"],
-    a: "TRISLOUTIONS builds fully automated finance and accounting workflows: GST reconciliation, AP invoice extraction, bank reconciliation, receivables follow-up, payable approval, cash-flow forecasting, MIS reporting and compliance deadline alerts. 8 connected automations were built and verified over 30 days." },
-
-  { chip: "How do I get started?", keys: ["start","begin","book","hire","get started","discovery","demo call","consult","onboarding","sign up","interested","free call"],
+  { keys: ["call","book","discovery","consultation","schedule","meeting","get started","hire","work with","next step"],
     a: GET_STARTED },
 
-  { keys: ["email","phone","whatsapp","number","contact","address","reach you","get in touch"],
-    a: "Email: " + EMAIL + ". Phone / WhatsApp: " + PHONE_TXT + ". You can also use the contact form on this page." }
+  { keys: ["hi","hello","hey","good morning","good afternoon","good evening","greetings","start"],
+    a: "Hello! I'm " + BOT + ", AI assistant for TRISLOUTIONS. Ask me about our eight verified finance & tax automations, or click a topic below:" }
 ];
 
-const CHIPS = ["What can you automate?", "How fast is it?", "How much time does it save?", "Is it safe for financial data?", "Indian compliance?", "Talk to the founder"];
+const FALLBACK = "I don't have exact details on that. " + GET_STARTED;
 
-const GREETING = "Hi! \ud83d\udc4b I'm " + BOT + ", the 24/7 support agent for TRISLOUTIONS. I can answer questions about our finance automations: GST reconciliation, payables, receivables, forecasting and reporting. What would you like to know?";
+/* --------- State --------- */
+let leadState = null; // null | 'name' | 'email' | 'phone' | 'msg'
+let leadData = {};
 
-/* ---------- chat plumbing ---------- */
-const fab = document.getElementById("chat-fab"), chat = document.getElementById("chat"),
-      log = document.getElementById("chat-log"), chips = document.getElementById("chips"),
-      cform = document.getElementById("chat-form"), cinput = document.getElementById("chat-input");
-
-let flow = null, lead = {}, greeted = false;
-const steps = [
-  ["name", "What is your name?"],
-  ["email", "What is your email address?"],
-  ["phone", "What is your phone or WhatsApp number?"],
-  ["question", "What would you like to ask or automate?"]
-];
-
-function say(text, who) {
-  const m = document.createElement("div"); m.className = "msg " + who; m.textContent = text;
-  log.appendChild(m); log.scrollTop = log.scrollHeight;
+/* --------- Engine --------- */
+function clean(s) {
+  return s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
 }
-function renderChips() {
-  chips.innerHTML = "";
-  CHIPS.forEach(label => {
-    const b = document.createElement("button"); b.type = "button"; b.className = "chip";
-    b.textContent = label; b.onclick = () => handle(label); chips.appendChild(b);
-  });
-}
-function toggle(open) {
-  chat.classList.toggle("open", open);
-  fab.setAttribute("aria-expanded", open);
-  if (open) {
-    if (!greeted) { say(GREETING, "bot"); renderChips(); greeted = true; }
-    cinput.focus();
+
+function reply(text) {
+  const norm = clean(text);
+  if (!norm) return "Please type a question or choose one of the options below.";
+
+  // Exact lead trigger phrases
+  if (norm === "talk to the founder" || norm === "talk to founder" || norm === "speak to founder") {
+    startLead();
+    return "I can pass your contact details to " + OWNER + ". What is your name?";
   }
+
+  // Active lead flow
+  if (leadState) return handleLeadStep(text);
+
+  let best = null, bestScore = 0;
+  for (const item of KB) {
+    let score = 0;
+    for (const k of item.keys) {
+      if (norm.includes(k)) score += k.length;
+    }
+    if (score > bestScore) { bestScore = score; best = item; }
+  }
+
+  if (best) {
+    if (best.lead && !leadState) {
+      startLead();
+      return best.a + "\n\nLet's start - what is your name?";
+    }
+    return best.a;
+  }
+  return FALLBACK;
 }
-fab.onclick = () => toggle(!chat.classList.contains("open"));
-document.getElementById("chat-close").onclick = () => { toggle(false); fab.focus(); };
-document.addEventListener("keydown", e => { if (e.key === "Escape" && chat.classList.contains("open")) toggle(false); });
 
 function startLead() {
-  flow = { i: 0 }; lead = {};
-  say("I'll have " + OWNER + " get back to you. A few quick details first (please don't share passwords or bank logins here).", "bot");
-  say(steps[0][1], "bot");
-}
-async function finishLead() {
-  flow = null;
-  try {
-    await sendForm({ name: lead.name, email: lead.email, phone: lead.phone, topic: "Chat question (via Siddu)", message: lead.question });
-    say("Thanks, " + lead.name + ". Your message has been passed to " + OWNER + ", who will contact you soon.", "bot");
-  } catch {
-    say("I couldn't send that automatically. Please use the contact form below or email " + EMAIL + ".", "bot");
-  }
-  waButton();
-}
-function waButton() {
-  const a = document.createElement("a");
-  a.className = "msg bot"; a.href = WHATSAPP; a.target = "_blank"; a.rel = "noopener";
-  a.textContent = "Message us on WhatsApp";
-  a.style.color = "var(--emerald)"; a.style.fontWeight = "600";
-  log.appendChild(a); log.scrollTop = log.scrollHeight;
+  leadState = 'name';
+  leadData = {};
 }
 
-/* ---------- matching ---------- */
-function norm(s) { return " " + s.toLowerCase().replace(/[^a-z0-9\u20b9%&\- ]+/g, " ").replace(/\s+/g, " ").trim() + " "; }
+function handleLeadStep(text) {
+  const input = text.trim();
+  if (leadState === 'name') {
+    leadData.name = input;
+    leadState = 'email';
+    return "Thanks, " + input + ". What is your email address?";
+  }
+  if (leadState === 'email') {
+    leadData.email = input;
+    leadState = 'phone';
+    return "Got it. What is your phone / WhatsApp number?";
+  }
+  if (leadState === 'phone') {
+    leadData.phone = input;
+    leadState = 'msg';
+    return "And briefly, what would you like to discuss with " + OWNER + "?";
+  }
+  if (leadState === 'msg') {
+    leadData.msg = input;
+    leadState = null;
+    // auto-fill main form if present
+    try {
+      const fn = document.getElementById('name') || document.querySelector('input[name="name"]');
+      const fe = document.getElementById('email') || document.querySelector('input[name="email"]');
+      const fp = document.getElementById('phone') || document.querySelector('input[name="phone"]');
+      const fm = document.getElementById('message') || document.querySelector('textarea[name="message"]');
+      if (fn) fn.value = leadData.name;
+      if (fe) fe.value = leadData.email;
+      if (fp) fp.value = leadData.phone;
+      if (fm) fm.value = "Chatbot lead: " + leadData.msg;
+    } catch (e) {}
 
-function findAnswer(text) {
-  const t = norm(text);
-  let best = null, score = 0;
-  KB.forEach(k => {
-    let s = 0;
-    k.keys.forEach(w => {
-      const kw = w.toLowerCase();
-      if (t.includes(kw.length <= 3 ? " " + kw.trim() + " " : kw)) s += kw.length >= 6 ? 3 : 2;
-    });
-    if (k.chip && t.trim() === norm(k.chip).trim()) s += 20;
-    if (s > score) { score = s; best = k; }
-  });
-  return best;
+    // Record to local ledger
+    if (typeof ledger !== 'undefined' && Array.isArray(ledger)) {
+      ledger.push({ timestamp: new Date().toISOString(), ...leadData });
+    }
+
+    return "Thank you! I've saved your details. " + OWNER + " will reach out to you shortly. You can also message TRISLOUTIONS directly on WhatsApp at " + PHONE_TXT + ".";
+  }
 }
 
-function handle(text) {
-  say(text, "me");
-  if (flow) {
-    const key = steps[flow.i][0];
-    if (key === "email" && !/^\S+@\S+\.\S+$/.test(text)) { say("That email doesn't look right. Please enter it again.", "bot"); return; }
-    lead[key] = text; flow.i++;
-    if (flow.i < steps.length) say(steps[flow.i][1], "bot"); else finishLead();
-    return;
-  }
-  const t = norm(text);
-  if (/^ (hi|hello|hey|hii|namaste|good morning|good afternoon|good evening) /.test(t) && t.split(" ").length <= 4) {
-    say("Hello! I'm " + BOT + ". Ask me anything about TRISLOUTIONS finance automations, or tap one of the options below.", "bot"); return;
-  }
-  if (/ (thanks|thank you|thx|ok thanks|great|got it) /.test(t) && t.split(" ").length <= 4) {
-    say("You're welcome! If you'd like to talk to " + OWNER + ", just say \"talk to the founder\".", "bot"); return;
-  }
-  const best = findAnswer(text);
-  if (best) {
-    say(best.a, "bot");
-    if (best.lead) startLead();
+/* --------- DOM Binding --------- */
+function addMsg(text, sender) {
+  const box = document.getElementById('chat-messages');
+  if (!box) return;
+  const div = document.createElement('div');
+  div.style.margin = '8px 0';
+  div.style.textAlign = sender === 'user' ? 'right' : 'left';
+  const span = document.createElement('span');
+  span.style.display = 'inline-block';
+  span.style.padding = '8px 12px';
+  span.style.borderRadius = '12px';
+  span.style.maxWidth = '80%';
+  span.style.whiteSpace = 'pre-wrap';
+  span.style.fontSize = '14px';
+  span.style.lineHeight = '1.4';
+  if (sender === 'user') {
+    span.style.background = '#0070f3';
+    span.style.color = '#fff';
   } else {
-    say("I don't have that information. I can pass your question to " + OWNER + " so he can reply personally.", "bot");
-    startLead();
+    span.style.background = '#f0f0f0';
+    span.style.color = '#111';
   }
+  span.textContent = text;
+  div.appendChild(span);
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
 }
-cform.addEventListener("submit", e => { e.preventDefault(); const v = cinput.value.trim(); if (!v) return; cinput.value = ""; handle(v); });
+
+function sendChat() {
+  const inp = document.getElementById('chat-input');
+  if (!inp) return;
+  const txt = inp.value;
+  if (!txt.trim()) return;
+  addMsg(txt, 'user');
+  inp.value = '';
+  setTimeout(() => {
+    addMsg(reply(txt), 'bot');
+  }, 300);
+}
+
+function clickChip(txt) {
+  addMsg(txt, 'user');
+  setTimeout(() => {
+    addMsg(reply(txt), 'bot');
+  }, 300);
+}
+
+// Auto-greeting on load
+document.addEventListener('DOMContentLoaded', () => {
+  const box = document.getElementById('chat-messages');
+  if (box && box.children.length === 0) {
+    addMsg("Hello! I'm " + BOT + ", AI assistant for TRISLOUTIONS. Ask me about our eight verified finance & tax automations, or click a topic below:", 'bot');
+  }
+  const btn = document.getElementById('chat-send');
+  if (btn) btn.onclick = sendChat;
+  const inp = document.getElementById('chat-input');
+  if (inp) {
+    inp.onkeypress = (e) => { if (e.key === 'Enter') sendChat(); };
+  }
+});
+</script>
+</body>
+</html>
