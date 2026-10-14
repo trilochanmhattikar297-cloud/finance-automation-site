@@ -1,545 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TRISLOUTIONS | Finance &amp; Accounting Workflow Automation</title>
-<meta name="description" content="TRISLOUTIONS builds fully automated finance workflows: GST reconciliation, accounts payable, receivables, cash-flow forecasting and MIS reporting, tested on real, messy data. Founder: Trilochan M Hattikar.">
-<link rel="icon" type="image/png" href="data:image/png;base64,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">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0B1740;
-  --surface:#112252;
-  --surface-2:#182D66;
-  --line:#2A4180;
-  --text:#E9EFF6;
-  --muted:#A3B5CA;
-  --emerald:#E6C46A;
-  --emerald-deep:#B8923A;
-  --green:#34D399;
-  --amber:#F5B84B;
-  --red:#F28B82;
-  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
-  --radius:10px;
-}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-img,svg{max-width:100%}
-a{color:var(--emerald)}
-:focus-visible{outline:3px solid var(--emerald);outline-offset:3px;border-radius:4px}
-.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
-section{padding:96px 0}
-h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0;letter-spacing:-.015em}
-h1{font-size:clamp(2.4rem,5.4vw,4.1rem);font-weight:700}
-h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;max-width:22ch}
-h3{font-size:1.2rem;font-weight:500}
-p{margin:0}
-.lead{color:var(--muted);font-size:1.12rem;max-width:62ch}
-.section-head{margin-bottom:44px;display:grid;gap:14px}
+// =====================================================================
+// SIDDU CHAT WIDGET: paste-in replacement
+// In index.html, delete everything from the comment line that says
+// "FAQ chatbot" (just above "const KB = [") down to, but NOT including,
+// the closing script tag, and paste this whole file in its place.
+// Everything above that point (OWNER, EMAIL, sendForm, ledger, contact
+// form) stays exactly as it is.
+// =====================================================================
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:8px;font:600 1rem var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
-.btn-primary{background:var(--emerald);color:#1A1405}
-.btn-primary:hover{background:#F2D88F}
-.btn-ghost{border-color:var(--line);color:var(--text);background:transparent}
-.btn-ghost:hover{border-color:var(--emerald);color:var(--emerald)}
+/* ---------- Siddu: knowledge base (from the Siddu 24/7 Support Agent PDF) ---------- */
+const BOT = "Siddu";
+const PHONE_TXT = "+91 78927 75885";
+const BENCH = " Note: the 15-minute run was directly measured. The \"before\" figures (40 hrs, 10 hrs, 2 days) are industry benchmarks, not personally re-timed manual work.";
+const GET_STARTED = "Book a free discovery call using the contact form on this page, or message TRISLOUTIONS on WhatsApp at " + PHONE_TXT + ". " + OWNER + " will reply with next steps.";
 
-/* nav */
-header.nav{position:sticky;top:0;z-index:20;background:rgba(11,23,64,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
-.brand img{height:42px;width:auto;border-radius:6px;display:block}
-.foot-brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.foot-brand img{height:38px;width:auto;border-radius:6px}
-@media(max-width:520px){.brand span{display:none}}
-.nav nav{display:flex;gap:26px}
-.nav nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
-.nav nav a:hover{color:var(--text)}
-.nav .btn{padding:9px 16px;font-size:.92rem}
-@media(max-width:820px){.nav nav{display:none}}
-
-/* hero */
-.hero{position:relative;overflow:hidden;padding:84px 0 96px;background:radial-gradient(900px 440px at 88% 0%,rgba(230,196,106,.13),transparent 62%),radial-gradient(circle at 1px 1px,rgba(230,196,106,.09) 1px,transparent 0) 0 0/30px 30px}
-.hero .wrap{position:relative}
-.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
-.hero h1{margin-bottom:22px}
-.hero .lead{margin-bottom:32px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap}
-@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:44px}}
-
-/* the ledger: the page's one memorable object */
-.ledger{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.ledger-bar{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:.88rem;color:var(--muted)}
-.ledger-bar strong{color:var(--text);font-weight:600}
-.ledger-scroll{overflow-x:auto}
-.ledger table{width:100%;min-width:500px;border-collapse:collapse;font-size:.92rem;font-variant-numeric:tabular-nums}
-.ledger th{text-align:left;font-weight:500;color:var(--muted);padding:10px 18px;border-bottom:1px solid var(--line);font-size:.84rem}
-.ledger td:first-child{white-space:nowrap}
-.ledger td{padding:13px 18px;border-bottom:1px solid rgba(42,65,128,.55)}
-.ledger tr:last-child td{border-bottom:0}
-.ledger td.num,.ledger th.num{text-align:right}
-.tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.8rem;font-weight:600;white-space:nowrap}
-.tag.ok{background:rgba(52,211,153,.14);color:var(--green)}
-.tag.warn{background:rgba(245,184,75,.14);color:var(--amber)}
-.tag.bad{background:rgba(242,139,130,.14);color:var(--red)}
-.ledger-foot{padding:12px 18px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
-.ledger tr.row-in{animation:rowin .5s ease both}
-@keyframes rowin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
-
-/* results */
-.results{background:var(--surface);border-block:1px solid var(--line)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.stat{padding:28px 24px;border-right:1px solid var(--line);display:grid;gap:8px;align-content:start}
-.stat:last-child{border-right:0}
-.stat .what{color:var(--muted);font-size:.95rem}
-.stat .big{font-family:var(--display);font-size:2.3rem;font-weight:700;color:var(--emerald);line-height:1}
-.stat .flow{font-size:.95rem}
-.footnote{margin-top:22px;color:var(--muted);font-size:.92rem;max-width:80ch;padding-left:14px;border-left:3px solid var(--amber)}
-@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
-@media(max-width:520px){.stats{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}}
-
-/* automations list */
-.auto-list{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
-.auto-list details{border-bottom:1px solid var(--line)}
-.auto-list details:last-child{border-bottom:0}
-.auto-list summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:20px 24px}
-.auto-list summary::-webkit-details-marker{display:none}
-.auto-list summary:hover{background:var(--surface-2)}
-.auto-n{font-family:var(--display);color:var(--emerald);font-weight:700;width:1.6rem}
-.auto-title{display:grid;gap:2px}
-.auto-title span{color:var(--muted);font-size:.93rem}
-.chev{width:12px;height:12px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
-details[open] .chev{transform:rotate(-135deg);border-color:var(--emerald)}
-.auto-body{padding:4px 24px 28px 82px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.auto-body h4{margin:0 0 6px;font-size:.9rem;font-weight:600;color:var(--emerald)}
-.auto-body p{font-size:.96rem;color:var(--text)}
-.fixed{grid-column:1/-1;padding-top:16px;border-top:1px dashed var(--line);color:var(--muted);font-size:.92rem}
-.fixed b{color:var(--text);font-weight:600}
-@media(max-width:820px){.auto-body{grid-template-columns:1fr;padding-left:24px}.auto-list summary{padding:18px}}
-
-/* agent flow */
-.flow-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
-.flow-steps li{position:relative;text-align:center;padding:0 14px}
-.fico{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:var(--bg);border:2px solid var(--emerald);color:var(--emerald);position:relative;z-index:1}
-.fico svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.flow-steps li:not(:last-child)::after{content:"";position:absolute;top:31px;left:calc(50% + 40px);width:calc(100% - 80px);border-top:2px dashed var(--line)}
-.flow-steps h3{font-size:1.08rem;margin-bottom:6px}
-.flow-steps p{color:var(--muted);font-size:.92rem;line-height:1.5}
-@media(max-width:900px){
-  .flow-steps{grid-template-columns:1fr;gap:6px}
-  .flow-steps li{display:grid;grid-template-columns:64px 1fr;gap:18px;text-align:left;padding:0 0 22px}
-  .fico{margin:0}
-  .flow-steps li:not(:last-child)::after{top:68px;left:31px;width:0;height:calc(100% - 68px);border-top:0;border-left:2px dashed var(--line)}
-}
-.auto-ico{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:rgba(230,196,106,.12);color:var(--emerald)}
-.auto-ico svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--emerald-deep),var(--emerald))}
-.dots{display:flex;align-items:center;margin-top:6px;height:8px}
-.dots i{width:8px;height:8px;border-radius:50%;background:var(--emerald);flex:none}
-.dots b{height:2px;flex:1;background:var(--emerald-deep);opacity:.6}
-.hero-net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.phone-row{display:flex;align-items:center;gap:12px}
-.wa{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(52,211,153,.15);color:var(--green)}
-.wa:hover{background:rgba(52,211,153,.28)}
-.wa svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-
-/* faq */
-.faq{max-width:780px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:500;font-size:1.06rem;display:flex;justify-content:space-between;gap:20px;align-items:center}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:1.5rem;color:var(--emerald);line-height:1}
-.faq details[open] summary::after{content:"\2212"}
-.faq details p{padding:0 0 22px;color:var(--muted);max-width:64ch}
-
-/* about + contact */
-.about{background:var(--surface);border-block:1px solid var(--line)}
-.about p{max-width:64ch;color:var(--muted);font-size:1.08rem}
-.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
-@media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:36px}}
-.contact-list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:14px}
-.contact-list span{display:block;color:var(--muted);font-size:.86rem}
-form{display:grid;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:560px){.row2{grid-template-columns:1fr}}
-label{display:grid;gap:7px;font-size:.92rem;font-weight:500}
-input,textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;width:100%}
-input::placeholder,textarea::placeholder{color:#8197C4}
-textarea{min-height:130px;resize:vertical}
-.hp{position:absolute;left:-9999px}
-.form-status{min-height:1.4em;font-size:.95rem}
-.form-status.ok{color:var(--emerald)}
-.form-status.err{color:var(--red)}
-
-footer{padding:34px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-
-/* chat widget */
-.chat-fab{position:fixed;right:20px;bottom:20px;z-index:50;width:58px;height:58px;border-radius:50%;border:0;background:var(--emerald);color:#1A1405;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 22px rgba(0,0,0,.4)}
-.chat-fab svg{width:26px;height:26px}
-.chat{position:fixed;right:20px;bottom:90px;z-index:50;width:min(370px,calc(100vw - 40px));height:min(540px,calc(100vh - 120px));background:var(--surface);border:1px solid var(--line);border-radius:14px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.5)}
-.chat.open{display:flex}
-.chat-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-weight:600}
-.chat-head button{background:none;border:0;color:var(--muted);font-size:1.5rem;cursor:pointer;line-height:1}
-.chat-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:86%;padding:10px 13px;border-radius:12px;font-size:.94rem;line-height:1.5;white-space:pre-wrap}
-.msg.bot{background:var(--surface-2);align-self:flex-start}
-.msg.me{background:var(--emerald);color:#1A1405;align-self:flex-end}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 10px}
-.chip{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:99px;padding:6px 12px;font:.85rem var(--body);cursor:pointer}
-.chip:hover{border-color:var(--emerald);color:var(--emerald)}
-.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
-.chat-form input{padding:10px 12px}
-.chat-form button{background:var(--emerald);color:#1A1405;border:0;border-radius:8px;padding:0 16px;font-weight:600;cursor:pointer}
-
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *{animation:none!important;transition:none!important}
-}
-</style>
-</head>
-<body>
-
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="TRISLOUTIONS home"><img src="data:image/jpeg;base64,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" alt="TRISLOUTIONS logo"><span>TRISLOUTIONS</span></a>
-    <nav aria-label="Main">
-      <a href="#results">Results</a>
-      <a href="#automations">Automations</a>
-      <a href="#pipeline">How it works</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn btn-primary" href="#contact">Book a free call</a>
-  </div>
-</header>
-
-<main id="top">
-
-<!-- HERO -->
-<section class="hero">
-  <svg class="hero-net" viewBox="0 0 1200 640" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" fill="none" stroke="#E6C46A" stroke-width="1.5">
-    <g opacity=".22">
-      <path d="M1010 70L1100 150M1100 150L1160 60M1100 150L1070 260M1070 260L980 330M1070 260L1170 330M1010 70L930 140M930 140L1100 150"/>
-      <path d="M90 560L190 500M190 500L300 570M190 500L170 400M300 570L420 600"/>
-    </g>
-    <g fill="#E6C46A" stroke="none" opacity=".35">
-      <circle cx="1010" cy="70" r="7"/><circle cx="1100" cy="150" r="12"/><circle cx="1160" cy="60" r="6"/>
-      <circle cx="1070" cy="260" r="9"/><circle cx="980" cy="330" r="6"/><circle cx="1170" cy="330" r="8"/><circle cx="930" cy="140" r="5"/>
-      <circle cx="90" cy="560" r="6"/><circle cx="190" cy="500" r="10"/><circle cx="300" cy="570" r="7"/><circle cx="170" cy="400" r="5"/><circle cx="420" cy="600" r="5"/>
-    </g>
-  </svg>
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Finance workflows that run themselves, tested on real, messy data.</h1>
-      <p class="lead">TRISLOUTIONS builds fully automated finance workflows. In 30 days, 8 connected automations were built and verified covering GST reconciliation, accounts payable, receivables, cash-flow forecasting and management reporting. The full month-close sequence ran on its own in about 15 minutes.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#contact">Book a free call</a>
-        <a class="btn btn-ghost" href="#automations">See the automations</a>
-      </div>
-    </div>
-
-    <div class="ledger" role="group" aria-label="Illustrative GSTR-2B reconciliation output">
-      <div class="ledger-bar"><strong>GSTR-2B reconciliation</strong><span id="ledger-count">Checking...</span></div>
-      <div class="ledger-scroll">
-        <table>
-          <thead><tr><th>Invoice</th><th class="num">Books</th><th class="num">GSTR-2B</th><th>Result</th></tr></thead>
-          <tbody id="ledger-body"></tbody>
-        </table>
-      </div>
-      <div class="ledger-foot">Illustrative sample of the four error types the agent was tested against.</div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section class="results" id="results">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Headline results</h2>
-    </div>
-    <div class="stats">
-      <div class="stat"><span class="what">GST reconciliation, per entity</span><span class="big">~98%</span><span class="flow">~40 hrs down to minutes</span><div class="bar" aria-hidden="true"><i style="width:98%"></i></div></div>
-      <div class="stat"><span class="what">Accounts payable, per week</span><span class="big">~97%</span><span class="flow">~10 hrs down to minutes</span><div class="bar" aria-hidden="true"><i style="width:97%"></i></div></div>
-      <div class="stat"><span class="what">MIS report preparation</span><span class="big">~99%</span><span class="flow">~2 days down to minutes</span><div class="bar" aria-hidden="true"><i style="width:99%"></i></div></div>
-      <div class="stat"><span class="what">Full month-close sequence</span><span class="big">15 min</span><span class="flow">Measured on a live run. A new capability.</span><div class="dots" aria-hidden="true"><i></i><b></b><i></i><b></b><i></i><b></b><i></i></div></div>
-    </div>
-    <p class="footnote">The 15-minute run time was directly measured. The "before" figures are industry benchmarks this roadmap was scoped against, not personally re-timed manual work.</p>
-  </div>
-</section>
-
-<!-- AUTOMATIONS -->
-<section id="automations">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>The eight automations</h2>
-      <p class="lead">Each one was checked against known, deliberately flawed test data before it was trusted. Open any row for the before, the after and what broke along the way.</p>
-    </div>
-
-    <div class="auto-list">
-
-      <details open>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v13M3 8l4-4 4 4M17 20V7M13 16l4 4 4-4"/></svg></span><span class="auto-title"><h3>GSTR-2B Reconciliation Agent</h3><span>Compares the purchase ledger against GSTR-2B filing data.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Manual line-by-line comparison across two spreadsheets. Industry benchmark: about 40 hours per entity.</p></div>
-          <div><h4>After</h4><p>Exact-match comparison with AI classification. It found all 4 planted error types: a duplicate entry, a timing difference, an amount mismatch and an invoice missing from the books.</p></div>
-          <div><h4>Impact</h4><p>Catches what a manual review tends to miss, such as a ₹40 discrepancy on a single invoice.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> a column-name collision that silently overwrote one dataset with the other, and a missing JSON.stringify that sent the AI a broken placeholder instead of real data.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="auto-title"><h3>Accounts Payable Invoice Pipeline</h3><span>Reads PDF and image invoices and checks mandatory fields.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Manual data entry from each vendor invoice. Industry benchmark: about 10 hours per week.</p></div>
-          <div><h4>After</h4><p>Automatic extraction with a validation check. Invoices missing a GSTIN, invoice number or total are blocked from posting and trigger an automatic warning email.</p></div>
-          <div><h4>Impact</h4><p>A sales invoice was once fed in where a purchase invoice belonged. The extraction was accurate but the document was wrong, so a validation rule now catches this.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> a .docx test file that AI vision cannot read (converted to PDF), and GSTIN truncation that became a permanent 15-character rule.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><span class="auto-title"><h3>Automated MIS Generation</h3><span>Pulls monthly P&amp;L and drafts board-ready commentary.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Commentary written by hand every month. Industry benchmark: about 2 days.</p></div>
-          <div><h4>After</h4><p>Scheduled generation with no manual step, which identifies margin compression, names likely causes and flags forward risk. The whole process runs automatically on a schedule.</p></div>
-          <div><h4>Impact</h4><p>A filter bug once pulled the wrong month, and the AI filled the gap with a believable but invented story. Every output is now checked against known figures.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> a case-sensitive sheet filter that returned zero rows, then the wrong month, and currency that defaulted to USD instead of ₹ with lakh-style grouping.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="auto-title"><h3>Compliance Calendar Agent</h3><span>Alerts you when a GST, TDS or ROC deadline is within 7 days.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Manual deadline tracking, prone to missed filings and late fees.</p></div>
-          <div><h4>After</h4><p>A daily check against a filing calendar. It fires only inside the warning window and stays silent otherwise. Tested in both directions.</p></div>
-          <div><h4>Impact</h4><p>A missed deadline carries direct penalties. This removes the manual tracking entirely.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> silent failures parsing the DD-Mon-YYYY dates used in Indian filings, a zero-indexed month error and two field-name casing mismatches.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg></span><span class="auto-title"><h3>Bank Reconciliation Agent</h3><span>Matches ledger invoices to bank payments by amount and date.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Manual statement-to-ledger matching every week.</p></div>
-          <div><h4>After</h4><p>Each invoice is marked Paid, Unpaid or Check Manually (an automatic flag for ambiguous matches). It caught a ₹100 short payment and a genuinely unpaid invoice.</p></div>
-          <div><h4>Impact</h4><p>When two invoices share the same amount, it automatically flags them as Check Manually instead of guessing which payment belongs to which.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> a race condition between parallel branches (solved with a Merge node) and an execution-mode mismatch that duplicated rows 12 times.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="auto-title"><h3>Receivables Follow-Up Agent</h3><span>Ages unpaid invoices and escalates the reminder tone in 3 stages.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Manual tracking and hand-written follow-ups, with the tone depending on who wrote them that day.</p></div>
-          <div><h4>After</h4><p>A daily check with three escalating tones, verified on test invoices at 5, 42 and 82 days overdue.</p></div>
-          <div><h4>Known limitation</h4><p>It re-sends a reminder every day it runs, because it does not yet track what was already sent. That is the next iteration, and it is documented rather than hidden.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> a Switch node with overlapping thresholds, replaced by a pre-computed stage value for unambiguous routing.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></span><span class="auto-title"><h3>Payable Approval Agent</h3><span>3-way match across Purchase Order, Goods Receipt and Invoice.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>Manual cross-checking of three documents, if it was done at all.</p></div>
-          <div><h4>After</h4><p>Matching payables are approved automatically. A deliberate mismatch (invoice for 50 units, only 45 received) was automatically held, with a specific reason stated.</p></div>
-          <div><h4>Impact</h4><p>Stops payment for goods that were never delivered, a control small teams rarely have time to run by hand.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> a stray quote character in a node name that broke cross-node references, and an IF-branch wiring error that sent the approval email for every invoice.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary><span class="auto-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M15 6h6v6"/></svg></span><span class="auto-title"><h3>Cash-Flow Forecast Agent</h3><span>A 90-day rolling forecast of your cash position.</span></span><span class="chev"></span></summary>
-        <div class="auto-body">
-          <div><h4>Before</h4><p>No routine forecast existed.</p></div>
-          <div><h4>After</h4><p>A weekly forecast built from receivables (adjusted for real collection lag), approved payables and fixed costs. It flagged a projected shortfall of -₹8,50,500 in week 9.</p></div>
-          <div><h4>Impact</h4><p>It will not run if reconciliation or payables approval still has unresolved issues, because a forecast on unverified numbers misleads.</p></div>
-          <p class="fixed"><b>Fixed along the way:</b> comma-formatted amounts in Google Sheets read as text, which silently broke the calculation, and a cross-workflow race condition that read stale status data.</p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
-
-<!-- PIPELINE -->
-<section id="pipeline" class="results">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>How the agents work together</h2>
-      <p class="lead">The month-close sequence (reconciliation, payables approval, receivables follow-up and management commentary) ran on its own in about 15 minutes on a live test.</p>
-    </div>
-    <ol class="flow-steps"><li><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v13M3 8l4-4 4 4M17 20V7M13 16l4 4 4-4"/></svg></span><div><h3>Reconcile</h3><p>GSTR-2B data is compared against the purchase ledger.</p></div></li><li><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></span><div><h3>Match payables</h3><p>A 3-way match checks the Purchase Order, Goods Receipt and Invoice.</p></div></li><li><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3>Chase receivables</h3><p>Overdue invoices get reminders that escalate in three stages.</p></div></li><li><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M15 6h6v6"/></svg></span><div><h3>Forecast cash</h3><p>A 90-day forecast, built only on resolved reconciliation and payables data.</p></div></li><li><span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><div><h3>Report</h3><p>Management commentary is generated automatically from the P&amp;L.</p></div></li></ol>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="section-head"><h2>Common questions</h2></div>
-    <div class="faq">
-      <details><summary>What can you automate?</summary><p>GST reconciliation, AP invoice extraction, bank reconciliation, receivables follow-up, payable approval, cash-flow forecasting, MIS reporting and compliance deadline alerts.</p></details>
-      <details><summary>Is it safe for financial data?</summary><p>Every automation includes built-in validation rules (such as GSTIN checks, 3-way matching and a forecast that refuses to run on unresolved data) and was tested against known figures before use.</p></details>
-      <details><summary>How fast is it?</summary><p>The full month-close sequence (reconciliation, payables approval, receivables follow-up and commentary) ran in about 15 minutes on a live test.</p></details>
-      <details><summary>Does it work with Indian compliance requirements?</summary><p>Yes. It handles GSTR-2B, GSTIN validation, TDS and ROC deadlines, and ₹ amounts with lakh-style formatting.</p></details>
-      <details><summary>How do I get started?</summary><p>Book a free discovery call using the contact form below, or message TRISLOUTIONS on WhatsApp.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="section-head"><h2>About</h2></div>
-    <p>TRISLOUTIONS is run by its founder, Trilochan M Hattikar. We build finance and accounting workflow automations covering GST reconciliation, payables, receivables, forecasting and MIS reporting. Every build is tested on real, deliberately imperfect data before it is trusted.</p>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap contact-grid">
-    <div>
-      <h2>Book a free discovery call</h2>
-      <p class="lead" style="margin-top:14px">Tell us what you want to automate and Trilochan M Hattikar will reply with next steps.</p>
-      <ul class="contact-list">
-        <li><span>Founder</span>Trilochan M Hattikar</li>
-        <li><span>Email</span><a href="mailto:trilochanmhattikar297@gmail.com">trilochanmhattikar297@gmail.com</a></li>
-        <li><span>Phone / WhatsApp</span><div class="phone-row"><a href="tel:+917892775885">+91 78927 75885</a><a class="wa" href="https://wa.me/917892775885" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 20.5 11.8z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-.9-.4-1.8-1.3-2.2-2.2l.8-1-1-2z"/></svg></a></div></li>
-      </ul>
-    </div>
-
-    <form id="contact-form" novalidate>
-      <div class="row2">
-        <label>Name<input name="name" required autocomplete="name"></label>
-        <label>Email<input name="email" type="email" required autocomplete="email"></label>
-      </div>
-      <label>Company<input name="company" autocomplete="organization"></label>
-      <label>What do you want to automate?<input name="topic" placeholder="e.g. GST reconciliation, payables, forecasting" required></label>
-      <label>Message<textarea name="message" placeholder="Tell us a little about your current process"></textarea></label>
-      <input class="hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn btn-primary" type="submit">Send message</button>
-      <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-    </form>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="wrap foot-brand"><img src="data:image/jpeg;base64,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" alt="TRISLOUTIONS logo"><span>&copy; 2026 TRISLOUTIONS. All rights reserved. Founder: Trilochan M Hattikar &middot; <a href="mailto:trilochanmhattikar297@gmail.com">trilochanmhattikar297@gmail.com</a> &middot; <a href="tel:+917892775885">+91 78927 75885</a></span></div>
-</footer>
-
-<!-- CHAT WIDGET -->
-<button class="chat-fab" id="chat-fab" aria-label="Open chat" aria-expanded="false" aria-controls="chat">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
-</button>
-<div class="chat" id="chat" role="dialog" aria-label="Chat assistant">
-  <div class="chat-head"><span>TRISLOUTIONS assistant</span><button id="chat-close" aria-label="Close chat">&times;</button></div>
-  <div class="chat-log" id="chat-log" aria-live="polite"></div>
-  <div class="chips" id="chips"></div>
-  <form class="chat-form" id="chat-form">
-    <input id="chat-input" placeholder="Type your question" aria-label="Your message" autocomplete="off">
-    <button type="submit">Send</button>
-  </form>
-</div>
-
-<script>
-const OWNER = "Trilochan M Hattikar";
-const EMAIL = "trilochanmhattikar297@gmail.com";
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + EMAIL;
-const WHATSAPP = "https://wa.me/917892775885";
-const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-async function sendForm(fields) {
-  const d = new FormData();
-  Object.entries(fields).forEach(([k, v]) => d.append(k, v));
-  d.append("_subject", "New enquiry from TRISLOUTIONS website");
-  d.append("_template", "table");
-  d.append("_captcha", "false");
-  const res = await fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { Accept: "application/json" } });
-  if (!res.ok) throw new Error("send failed");
-  return res.json();
-}
-
-/* hero ledger: rows appear once, in sequence */
-const rows = [
-  ["INV-1042", "₹1,18,000", "₹1,18,000", "ok",   "Matched"],
-  ["INV-1043", "₹54,000",   "₹54,000",   "bad",  "Duplicate entry"],
-  ["INV-1047", "₹23,540",   "₹23,500",   "warn", "Off by ₹40"],
-  ["INV-1051", "₹71,200",   "Next period", "warn", "Timing difference"],
-  ["INV-1055", "Not booked", "₹36,900",  "bad",  "Missing from books"]
-];
-const body = document.getElementById("ledger-body");
-const count = document.getElementById("ledger-count");
-function addRow(r) {
-  const tr = document.createElement("tr");
-  if (!reduce) tr.className = "row-in";
-  const cells = [r[0], r[1], r[2]];
-  cells.forEach((t, i) => { const td = document.createElement("td"); td.textContent = t; if (i) td.className = "num"; tr.appendChild(td); });
-  const td = document.createElement("td"); const s = document.createElement("span");
-  s.className = "tag " + r[3]; s.textContent = r[4]; td.appendChild(s); tr.appendChild(td);
-  body.appendChild(tr);
-}
-function playLedger() {
-  let i = 0;
-  const step = () => {
-    if (i < rows.length) { addRow(rows[i]); i++; count.textContent = i + " of " + rows.length + " checked"; setTimeout(step, reduce ? 0 : 650); }
-    else count.textContent = "4 issues found";
-  };
-  step();
-}
-playLedger();
-
-/* contact form */
-const form = document.getElementById("contact-form");
-const status = document.getElementById("form-status");
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  status.className = "form-status"; status.textContent = "";
-  const d = new FormData(form);
-  if (!d.get("name").trim() || !/^\S+@\S+\.\S+$/.test(d.get("email")) || !d.get("topic").trim()) {
-    status.className = "form-status err";
-    status.textContent = "Please enter your name, a valid email and what you want to automate.";
-    return;
-  }
-  if (d.get("_honey")) return;
-  const btn = form.querySelector("button[type=submit]");
-  btn.disabled = true; status.textContent = "Sending...";
-  try {
-    await sendForm({ name: d.get("name"), email: d.get("email"), company: d.get("company") || "", topic: d.get("topic"), message: d.get("message") || "" });
-    form.reset();
-    status.className = "form-status ok";
-    status.textContent = "Thanks. Your message has been sent and we will reply soon.";
-  } catch {
-    openMailto(Object.fromEntries(d));
-  } finally { btn.disabled = false; }
-});
-function openMailto(v) {
-  const sub = encodeURIComponent("Discovery call: " + (v.topic || ""));
-  const msg = encodeURIComponent("Name: " + v.name + "\nEmail: " + v.email + "\nCompany: " + (v.company || "") + "\n\n" + (v.message || ""));
-  window.location.href = "mailto:" + EMAIL + "?subject=" + sub + "&body=" + msg;
-  status.className = "form-status ok";
-  status.textContent = "The form could not send, so your email app is opening with the message ready to send.";
-}
-
-/* ---------- FAQ chatbot ---------- */
 const KB = [
-  { chip: "What can you automate?", keys: ["automate","what can","services","offer","do you do","build"],
-    a: "TRISLOUTIONS automates GST reconciliation, AP invoice extraction, bank reconciliation, receivables follow-up, payable approval, cash-flow forecasting, MIS reporting and compliance deadline alerts." },
-  { chip: "Is it safe for financial data?", keys: ["safe","secure","security","risk","trust","accurate","error","control"],
-    a: "Every automation includes built-in validation rules (such as GSTIN checks, 3-way matching and a forecast that refuses to run on unresolved data) and was tested against known figures before use." },
-  { chip: "How fast is it?", keys: ["fast","speed","time","how long","minutes","quick","month-close","month close"],
-    a: "The full month-close sequence (reconciliation, payables approval, receivables follow-up and commentary) ran in about 15 minutes on a live test." },
-  { chip: "Indian compliance?", keys: ["india","gst","gstr","tds","roc","compliance","lakh","gstin"],
-    a: "Yes. It handles GSTR-2B, GSTIN validation, TDS and ROC deadlines, and ₹ amounts with lakh-style formatting." },
-  { chip: "How do I get started?", keys: ["start","begin","book","call","hire","price","cost","quote","contact"],
-    a: "Book a free discovery call using the contact form on this page, or message us on WhatsApp at 7892775885." }
+  /* ---- specific topics first, general ones later (ties go to the earlier entry) ---- */
+  { chip: "Talk to the founder", keys: ["talk to","speak to","speak with","human","person","founder","trilochan","call me","contact me","callback","call back","reach"],
+    lead: true,
+    a: OWNER + " built, debugged and verified all eight automations. I can pass your details to him." },
+
+  { keys: ["price","pricing","cost","quote","fee","charge","how much","discount","budget","package","plan"],
+    a: "I don't have pricing information. " + OWNER + " discusses that on a free discovery call. Book one using the contact form on this page, or message us on WhatsApp at " + PHONE_TXT + "." },
+
+  { keys: ["how long will","setup time","set up time","timeline","implementation","onboard","go live","delivery time","how soon","turnaround"],
+    a: "I don't have a set timeline for new projects. " + OWNER + " can estimate it after hearing what you want to automate. Book a free discovery call using the contact form on this page." },
+
+  { keys: ["software","tally","zoho","sap","quickbooks","erp","integrat","google sheets","sheets","excel","connect with","work with","tools"],
+    a: "The builds described to me use Google Sheets as a data source. For any other system or software, please ask " + OWNER + " on a free discovery call." },
+
+  { keys: ["file my gst","file gst","filing return","file return","e-filing","efile","file my return","submit return","file taxes"],
+    a: "Return filing isn't listed as a feature. The GSTR-2B agent compares your purchase ledger against GSTR-2B filing data to find mismatches. For filing itself, please speak to " + OWNER + " or a tax professional." },
+
+  { keys: ["tax advice","legal advice","legal","lawyer","should i claim","itc eligib","penalty advice"],
+    a: "I can explain what the automations do, but I can't give tax, GST or legal advice. For a filing decision, please consult your accountant or a tax professional." },
+
+  { keys: ["payroll","inventory","hr ","crm","sales forecast","e-commerce","ecommerce","stock","tds return","audit"],
+    a: "That isn't one of the eight documented automations (GSTR-2B reconciliation, AP invoice pipeline, MIS generation, compliance calendar, bank reconciliation, receivables follow-up, payable approval and cash-flow forecast). " + OWNER + " can discuss custom needs on a free discovery call." },
+
+  { keys: ["password","login","credential","otp","pin ","bank detail","account number"],
+    a: "Please don't share passwords, bank logins or portal credentials in this chat. I only need contact details. For anything confidential, speak to " + OWNER + " directly." },
+
+  { keys: ["gstr","2b","gst reconcil","reconcile gst","purchase ledger","mismatch","duplicate","timing difference","missing from books","\u20b940","40 rupee"],
+    a: "The GSTR-2B Reconciliation Agent compares your purchase ledger against GSTR-2B filing data. It was tested on four planted error types and found all four: a duplicate entry, a timing difference, an amount mismatch (including a \u20b940 difference on one invoice) and an invoice missing from the books. Manual comparison is benchmarked at about 40 hours per entity." },
+
+  { keys: ["invoice extract","extract","pdf invoice","image invoice","ocr","vendor invoice","accounts payable","ap pipeline","ap invoice","data entry","gstin"],
+    a: "The Accounts Payable Invoice Pipeline reads vendor invoices from PDF or image files and validates mandatory fields. Invoices missing a GSTIN, invoice number or total are blocked from posting and trigger a warning email. GSTINs must be the full 15 characters. Manual entry is benchmarked at about 10 hours a week." },
+
+  { keys: ["file type","file format","docx","word file","which file","what file","upload","pdf only","format of invoice"],
+    a: "Invoice extraction reads PDF and image invoices. A .docx file won't work because AI vision reads only image or PDF formats, so it needs to be converted to PDF first." },
+
+  { keys: ["wrong invoice","sales invoice","wrong document","wrong type","purchase invoice"],
+    a: "During testing, a sales invoice was fed in where a purchase invoice was expected. The extraction was accurate but the document type was wrong, so a validation rule now catches this." },
+
+  { keys: ["mis","management report","commentary","p&l","profit and loss","board","monthly report","margin"],
+    a: "The Automated MIS Generation agent pulls the monthly P&L on a schedule and drafts board-ready commentary that identifies margin compression, names likely causes and flags forward-looking risk. The commentary goes to a human review draft before it reaches any stakeholder. Manual writing is benchmarked at about 2 days." },
+
+  { keys: ["compliance calendar","deadline","due date","reminder for filing","roc","tds","alert","late fee","missed filing","calendar"],
+    a: "The Compliance Calendar Agent checks a filing calendar daily and sends an alert when a GST, TDS or ROC deadline is within 7 days. It stays silent otherwise, and it was tested in both directions. It handles the DD-Mon-YYYY date format used in Indian filings." },
+
+  { keys: ["bank rec","bank statement","bank match","paid unpaid","check manually","short payment","same amount","identical amount","bank"],
+    a: "The Bank Reconciliation Agent matches ledger invoices to bank payments by amount and date. Each invoice is marked Paid, Unpaid or Check Manually. It caught a \u20b9100 short payment and a genuinely unpaid invoice. If two invoices share the same amount, it flags them as Check Manually instead of guessing which payment belongs to which." },
+
+  { keys: ["receivable","follow up","follow-up","overdue","collections","reminder","dunning","aging","ageing","escalat","unpaid"],
+    a: "The Receivables Follow-Up Agent ages unpaid invoices daily and sends reminders in three escalating tones, verified on test invoices at 5, 42 and 82 days overdue. Known limitation: it currently re-sends a reminder every day it runs because it doesn't yet track what was already sent. Tracking is planned as the next iteration." },
+
+  { keys: ["payable approval","3-way","three way","3 way","purchase order","goods receipt","po ","grn","approval","quantity mismatch"],
+    a: "The Payable Approval Agent runs a 3-way match across the Purchase Order, Goods Receipt and Invoice. Matching payables are approved. In testing, an invoice for 50 units with only 45 received was held with a specific reason stated, so you don't pay for goods that were never delivered. A human reviews any mismatch." },
+
+  { keys: ["cash flow","cash-flow","cashflow","forecast","90 day","90-day","shortfall","liquidity","cash position","runway"],
+    a: "The Cash-Flow Forecast Agent builds a weekly 90-day rolling forecast from receivables (adjusted for real collection lag), approved payables and fixed monthly costs. In testing it flagged a projected shortfall of -\u20b98,50,500 in week 9. It refuses to run if reconciliation or payables approval still has unresolved issues, because a forecast on unverified numbers misleads." },
+
+  { keys: ["refuse","won't run","will not run","gate","gates","checkpoint","human review","human in the loop","human check"],
+    a: "There are three deliberate human checkpoints. (1) Payable approval: a person confirms mismatches. (2) AP invoice extraction: invoices missing mandatory fields go to a person instead of being posted incomplete. (3) Cash-flow forecast: it won't run while reconciliation is unresolved. MIS commentary also goes to a human review draft before distribution. These are design choices, not limitations." },
+
+  { keys: ["work together","pipeline","sequence","month close","month-close","end to end","end-to-end","connected","flow","order"],
+    a: "The month-close sequence runs in this order: reconcile GSTR-2B, match payables, chase receivables, forecast cash, then generate management commentary. It finished in about 15 minutes on a live test." },
+
+  { chip: "How fast is it?", keys: ["fast","speed","how long","minutes","quick","15 min","time taken","slow","performance"],
+    a: "The full month-close sequence (reconciliation, payables approval, receivables follow-up and commentary) ran in about 15 minutes on a live test. That time was directly measured." },
+
+  { chip: "How much time does it save?", keys: ["save","saving","time saved","hours","benchmark","percent","%","98","97","99","faster","improve","result","roi","efficien"],
+    a: "Against industry benchmarks: GST reconciliation drops from about 40 hours per entity to minutes (~98% faster), accounts payable from about 10 hours a week to minutes (~97%), and MIS preparation from about 2 days to minutes (~99%)." + BENCH },
+
+  { keys: ["measured","verified","proof","real data","demo","tested","testing","genuine","real or","fake"],
+    a: "Every build was tested on real, deliberately imperfect data (genuine mismatches, duplicates and incomplete invoices), not clean demo data, and debugged through documented failures before being verified. The 15-minute full run was directly measured on a live test." + BENCH },
+
+  { keys: ["hallucinat","make things up","made up","invent","fabricat","ai wrong","ai accuracy","ai reliable","ai mistake"],
+    a: "A filter bug once pulled the wrong month and the AI filled the gap with a plausible but invented story. Since then, every output is checked against known figures, and MIS commentary goes to a human review draft before distribution." },
+
+  { keys: ["payment on its own","pay automatically","auto pay","autopay","release payment","money move","transfer money"],
+    a: "The Payable Approval Agent approves fully matching payables and holds mismatches for human review with a stated reason. A person confirms wherever there is a mismatch." },
+
+  { keys: ["incomplete","missing field","bad data","wrong data","dirty data","messy","error handling","what if"],
+    a: "Invoices missing a GSTIN, invoice number or total are blocked from posting and trigger a warning email. The forecast won't run if reconciliation or payables approval has unresolved issues. The bank agent flags ambiguous matches as Check Manually." },
+
+  { keys: ["limitation","limit","weakness","can't do","cannot do","drawback","downside","bug","broke","fixed","problem","issue","mistake"],
+    a: "Known limitation: the receivables agent re-sends a reminder every day it runs because it doesn't yet track what was already sent. That is the next iteration. Real bugs found during the build (for example column-name collisions, race conditions and date-parsing failures) were documented openly and fixed, and each build was re-verified afterwards." },
+
+  { chip: "Indian compliance?", keys: ["india","indian","compliance","lakh","\u20b9","rupee","gst","tds","roc","gstr"],
+    a: "Yes. It handles GSTR-2B, GSTIN validation (a strict 15-character rule), TDS and ROC deadlines, DD-Mon-YYYY dates and \u20b9 amounts with lakh-style grouping." },
+
+  { chip: "Is it safe for financial data?", keys: ["safe","secure","security","risk","trust","accurate","error","control","reliable","privacy","confidential","protect"],
+    a: "Every automation has built-in validation rules (GSTIN checks, 3-way matching and a forecast that refuses to run on unresolved data) and was tested against known figures before being trusted. Human checkpoints cover payable approval, incomplete invoices and the forecast gate." },
+
+  { keys: ["eight","8 automation","list of automation","all automation","each automation","features","modules","agents"],
+    a: "The eight automations are: 1) GSTR-2B Reconciliation, 2) Accounts Payable Invoice Pipeline, 3) Automated MIS Generation, 4) Compliance Calendar, 5) Bank Reconciliation, 6) Receivables Follow-Up, 7) Payable Approval (3-way match) and 8) Cash-Flow Forecast. Ask me about any of them." },
+
+  { chip: "What can you automate?", keys: ["automate","what can","services","offer","do you do","build","capabilit","solution","trisloutions","who are you","company"],
+    a: "TRISLOUTIONS builds fully automated finance and accounting workflows: GST reconciliation, AP invoice extraction, bank reconciliation, receivables follow-up, payable approval, cash-flow forecasting, MIS reporting and compliance deadline alerts. 8 connected automations were built and verified over 30 days." },
+
+  { chip: "How do I get started?", keys: ["start","begin","book","hire","get started","discovery","demo call","consult","onboarding","sign up","interested","free call"],
+    a: GET_STARTED },
+
+  { keys: ["email","phone","whatsapp","number","contact","address","reach you","get in touch"],
+    a: "Email: " + EMAIL + ". Phone / WhatsApp: " + PHONE_TXT + ". You can also use the contact form on this page." }
 ];
+
+const CHIPS = ["What can you automate?", "How fast is it?", "How much time does it save?", "Is it safe for financial data?", "Indian compliance?", "Talk to the founder"];
+
+const GREETING = "Hi! \ud83d\udc4b I'm " + BOT + ", the 24/7 support agent for TRISLOUTIONS. I can answer questions about our finance automations: GST reconciliation, payables, receivables, forecasting and reporting. What would you like to know?";
+
+/* ---------- chat plumbing ---------- */
 const fab = document.getElementById("chat-fab"), chat = document.getElementById("chat"),
       log = document.getElementById("chat-log"), chips = document.getElementById("chips"),
       cform = document.getElementById("chat-form"), cinput = document.getElementById("chat-input");
@@ -549,7 +130,7 @@ const steps = [
   ["name", "What is your name?"],
   ["email", "What is your email address?"],
   ["phone", "What is your phone or WhatsApp number?"],
-  ["question", "What would you like to ask?"]
+  ["question", "What would you like to ask or automate?"]
 ];
 
 function say(text, who) {
@@ -558,13 +139,16 @@ function say(text, who) {
 }
 function renderChips() {
   chips.innerHTML = "";
-  KB.forEach(k => { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = k.chip; b.onclick = () => handle(k.chip); chips.appendChild(b); });
+  CHIPS.forEach(label => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip";
+    b.textContent = label; b.onclick = () => handle(label); chips.appendChild(b);
+  });
 }
 function toggle(open) {
   chat.classList.toggle("open", open);
   fab.setAttribute("aria-expanded", open);
   if (open) {
-    if (!greeted) { say("Hi! 👋 Welcome to TRISLOUTIONS. I can answer questions about finance automation: GST reconciliation, payables, receivables, forecasting and reporting. What would you like to know?", "bot"); renderChips(); greeted = true; }
+    if (!greeted) { say(GREETING, "bot"); renderChips(); greeted = true; }
     cinput.focus();
   }
 }
@@ -574,16 +158,16 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && chat.class
 
 function startLead() {
   flow = { i: 0 }; lead = {};
-  say("I will have " + OWNER + " get back to you. A few quick details first.", "bot");
+  say("I'll have " + OWNER + " get back to you. A few quick details first (please don't share passwords or bank logins here).", "bot");
   say(steps[0][1], "bot");
 }
 async function finishLead() {
   flow = null;
   try {
-    await sendForm({ name: lead.name, email: lead.email, phone: lead.phone, topic: "Chat question", message: lead.question });
-    say("Thanks, " + lead.name + ". Your question has been passed to " + OWNER + ", who will contact you soon.", "bot");
+    await sendForm({ name: lead.name, email: lead.email, phone: lead.phone, topic: "Chat question (via Siddu)", message: lead.question });
+    say("Thanks, " + lead.name + ". Your message has been passed to " + OWNER + ", who will contact you soon.", "bot");
   } catch {
-    say("I could not send that automatically. Please use the contact form below or email " + EMAIL + ".", "bot");
+    say("I couldn't send that automatically. Please use the contact form below or email " + EMAIL + ".", "bot");
   }
   waButton();
 }
@@ -594,22 +178,48 @@ function waButton() {
   a.style.color = "var(--emerald)"; a.style.fontWeight = "600";
   log.appendChild(a); log.scrollTop = log.scrollHeight;
 }
+
+/* ---------- matching ---------- */
+function norm(s) { return " " + s.toLowerCase().replace(/[^a-z0-9\u20b9%&\- ]+/g, " ").replace(/\s+/g, " ").trim() + " "; }
+
+function findAnswer(text) {
+  const t = norm(text);
+  let best = null, score = 0;
+  KB.forEach(k => {
+    let s = 0;
+    k.keys.forEach(w => {
+      const kw = w.toLowerCase();
+      if (t.includes(kw.length <= 3 ? " " + kw.trim() + " " : kw)) s += kw.length >= 6 ? 3 : 2;
+    });
+    if (k.chip && t.trim() === norm(k.chip).trim()) s += 20;
+    if (s > score) { score = s; best = k; }
+  });
+  return best;
+}
+
 function handle(text) {
   say(text, "me");
   if (flow) {
     const key = steps[flow.i][0];
-    if (key === "email" && !/^\S+@\S+\.\S+$/.test(text)) { say("That email does not look right. Please enter it again.", "bot"); return; }
+    if (key === "email" && !/^\S+@\S+\.\S+$/.test(text)) { say("That email doesn't look right. Please enter it again.", "bot"); return; }
     lead[key] = text; flow.i++;
     if (flow.i < steps.length) say(steps[flow.i][1], "bot"); else finishLead();
     return;
   }
-  const t = text.toLowerCase();
-  let best = null, score = 0;
-  KB.forEach(k => { const s = k.keys.filter(w => t.includes(w)).length + (t === k.chip.toLowerCase() ? 5 : 0); if (s > score) { score = s; best = k; } });
-  if (best) say(best.a, "bot"); else { say("I do not have a ready answer for that.", "bot"); startLead(); }
+  const t = norm(text);
+  if (/^ (hi|hello|hey|hii|namaste|good morning|good afternoon|good evening) /.test(t) && t.split(" ").length <= 4) {
+    say("Hello! I'm " + BOT + ". Ask me anything about TRISLOUTIONS finance automations, or tap one of the options below.", "bot"); return;
+  }
+  if (/ (thanks|thank you|thx|ok thanks|great|got it) /.test(t) && t.split(" ").length <= 4) {
+    say("You're welcome! If you'd like to talk to " + OWNER + ", just say \"talk to the founder\".", "bot"); return;
+  }
+  const best = findAnswer(text);
+  if (best) {
+    say(best.a, "bot");
+    if (best.lead) startLead();
+  } else {
+    say("I don't have that information. I can pass your question to " + OWNER + " so he can reply personally.", "bot");
+    startLead();
+  }
 }
 cform.addEventListener("submit", e => { e.preventDefault(); const v = cinput.value.trim(); if (!v) return; cinput.value = ""; handle(v); });
-
-</script>
-</body>
-</html>
